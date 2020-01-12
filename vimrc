@@ -79,8 +79,8 @@ autocmd BufWinLeave *.* mkview
 autocmd BufWinEnter *.* silent loadview"
 
  " Call the .vimrc.plug file
- if filereadable(expand("~/.vimrc.plug"))
-     source ~/.vimrc.plug
+ if filereadable(expand("~/.vim/vimrc.plug"))
+     source ~/.vim/vimrc.plug
  endif
 
 let g:ale_sign_error = '❌'
@@ -113,6 +113,8 @@ colorscheme dracula
 
 let g:ale_fixers = {}
 let g:ale_fixers['javascript'] = ['eslint']
+let g:ale_fixers['typescript'] = ['eslint']
+let g:ale_fixers['vue'] = ['eslint']
 let g:ale_fixers['css'] = ['prettier']
 let g:ale_fixers['json'] = ['fixjson']
 
@@ -169,5 +171,16 @@ map <C-m> :NERDTreeFind<CR>
 let NERDTreeShowHidden=1
 
 " Saving tmp files outside current dirs
-set backupdir=$TMPDIR//
-set directory=$TMPDIR//
+set backupdir=/tmp
+set directory=/tmp
+
+" Vim HadrMode
+let g:hardtime_default_on = 1
+let g:hardtime_ignore_buffer_patterns = [ "NERD.*" ]
+
+" Relative line numbers
+:set number relativenumber
+
+let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
+set termguicolors
